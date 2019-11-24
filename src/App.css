@@ -4,6 +4,11 @@
   font-family: 'Raleway', sans-serif;
 }
 
+img {
+  height: 40px;
+  width: 40px;
+}
+
 .App {
   /* text-align: center; */
 }

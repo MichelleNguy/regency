@@ -1,4 +1,5 @@
 const initialState = {
+    stage: "inventory",
     bank: 100,
     day: 0,
     cups: 0,

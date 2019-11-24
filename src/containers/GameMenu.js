@@ -15,9 +15,9 @@ const GameMenu = () =>{
     return (
         <div>
             <h1>How long will you be open for business?</h1>
-            <Link onClick={() => handleSelection(7)} to='/'>7 days</Link>
-            <Link onClick={() => handleSelection(14)} to='/'>14 days</Link>
-            <Link onClick={() => handleSelection(21)} to='/'>21 days</Link>
+            <Link onClick={() => handleSelection(7)} to='/play'>7 days</Link>
+            <Link onClick={() => handleSelection(14)} to='/play'>14 days</Link>
+            <Link onClick={() => handleSelection(21)} to='/play'>21 days</Link>
         </div>
     )
 }
