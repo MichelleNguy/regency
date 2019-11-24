@@ -5,5 +5,12 @@ const setGameData = (gameData) => {
     }
 }
 
+const setDays = (days) => {
+    return {
+        type: "SET_DAYS",
+        days: days
+    }
+}
 
-export { setGameData }
+
+export { setGameData, setDays }

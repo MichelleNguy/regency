@@ -15,6 +15,11 @@ const reducer = (state, action) => {
                 ...state,
                 gameData: action.gameData
             }
+        case "SET_DAYS":
+            return {
+                ...state,
+                days: action.days
+            }
         default:
             return state
     }
