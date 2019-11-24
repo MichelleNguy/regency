@@ -7,17 +7,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import reducer from './reducer'
+import { initialState, reducer} from './redux/reducer'
 
-
-const defaultState = {
-    bank: 100,
-    day: 0,
-    lemons: 0,
-    sugar: 0,
-    ice: 0
-}
-const store = createStore(reducer, defaultState, applyMiddleware(thunk))
+const store = createStore(reducer, initialState, applyMiddleware(thunk))
 
 ReactDOM.render(
     <Router>
