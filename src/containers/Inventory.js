@@ -36,8 +36,8 @@ const Inventory = () => {
         if (state.bank < prices[item]) {
             setError("You can't afford that")
         } else {
-            dispatch(setBank(-prices[item]))
-            dispatch(setItem(item, 10))
+            dispatch(AddBank(-prices[item]))
+            dispatch(AddItem(item, 10))
         }
     }
 

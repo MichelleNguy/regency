@@ -21,7 +21,7 @@ const AddBank = (amount) => {
 
 const AddItem = (item, amount) => {
     return {
-        type: "ASS_ITEM",
+        type: "ADD_ITEM",
         item: item,
         amount: amount
     }
