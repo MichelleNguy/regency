@@ -1,31 +1,56 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { AddBank, AddItem } from '../redux/actionCreator'
 
 const Inventory = () => {
 
-    const { stage, bank, cups, lemons, sugar, ice} = useSelector(state => ({
-        stage: state.stage,
-        bank: state.bank,
-        cups: state.cups,
-        lemons: state.lemons,
-        sugar: state.sugar,
-        ice: state.ice
-    }), shallowEqual)
-
+    const state = useSelector(state => state)
     const dispatch = useDispatch()
+
+    const [ error, setError ] = useState("")
+
+    const renderShop = () => {
+        let items = [ "lemons", "sugar", "ice", "cups"]
+        return (
+            <React.Fragment>
+                { items.map( item => {
+                    return (
+                        <div>
+                            <img src={`./ingredients/${item}.png`}/> X { state[`${item}`]}
+                            <button onClick={() => buyItem(item)}>BUY MORE</button>
+                        </div>
+                    )
+                }) }
+            </React.Fragment>
+        )
+    }
+
+    const buyItem = (item) => {
+        let prices = {
+            lemons: 2.50,
+            sugar: 1,
+            ice: 0.10,
+            cups: 1.5
+        }
+        if (state.bank < prices[item]) {
+            setError("You can't afford that")
+        } else {
+            dispatch(setBank(-prices[item]))
+            dispatch(setItem(item, 10))
+        }
+    }
 
     return (
         <div>
-            <h1><img src='./ingredients/lemon.png'></img> x {lemons}</h1>
-            <h1><img src='./ingredients/sugar.png'></img> x {sugar}</h1>
-            <h1><img src='./ingredients/ice.png'></img> x {ice}</h1>
-            <h1><img src='./ingredients/cup.png'></img> x {cups}</h1>
+            { error ? error : ""}
+            { renderShop() }
         </div>
     )
 }
 
 Inventory.propTypes = {
-
+    bank: PropTypes.number
 }
 
 export default Inventory

@@ -8,6 +8,7 @@ const MainMenu = () => {
         <div>
             <Link to="/menu" exact>PLAY</Link>
             <Link to="/instructions" exact>INSTRUCTIONS</Link>
+            <Link to="/options" exact>OPTIONS</Link>
             <Link to="/credits" exact>CREDITS</Link>
         </div>
     )

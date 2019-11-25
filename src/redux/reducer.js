@@ -21,6 +21,16 @@ const reducer = (state, action) => {
                 ...state,
                 days: action.days
             }
+        case "ADD_BANK":
+            return {
+                ...state,
+                bank: (state.bank + action.bank)
+            }
+        case "ADD_ITEM":
+            return {
+                ...state,
+                [action.item]: (state[action.item] + action.amount)
+            }
         default:
             return state
     }

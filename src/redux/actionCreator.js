@@ -12,5 +12,20 @@ const setDays = (days) => {
     }
 }
 
+const AddBank = (amount) => {
+    return {
+        type: "ADD_BANK",
+        bank: amount
+    }
+}
 
-export { setGameData, setDays }
+const AddItem = (item, amount) => {
+    return {
+        type: "ASS_ITEM",
+        item: item,
+        amount: amount
+    }
+}
+
+
+export { setGameData, setDays, AddBank, AddItem }
