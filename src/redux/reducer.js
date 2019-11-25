@@ -21,6 +21,11 @@ const reducer = (state, action) => {
                 ...state,
                 days: action.days
             }
+        case "CHANGE_STAGE":
+            return {
+                ...state,
+                stage: action.stage
+            }
         case "ADD_BANK":
             return {
                 ...state,

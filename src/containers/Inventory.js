@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { AddBank, AddItem } from '../redux/actionCreator'
+import { addBank, addItem, changeStage } from '../redux/actionCreator'
 
 const Inventory = () => {
 
@@ -36,8 +36,8 @@ const Inventory = () => {
         if (state.bank < prices[item]) {
             setError("You can't afford that")
         } else {
-            dispatch(AddBank(-prices[item]))
-            dispatch(AddItem(item, 10))
+            dispatch(addBank(-prices[item]))
+            dispatch(addItem(item, 10))
         }
     }
 
@@ -45,6 +45,7 @@ const Inventory = () => {
         <div>
             { error ? error : ""}
             { renderShop() }
+            <button onClick={() => dispatch(changeStage("recipe"))}>NEXT</button>
         </div>
     )
 }

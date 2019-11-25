@@ -12,14 +12,21 @@ const setDays = (days) => {
     }
 }
 
-const AddBank = (amount) => {
+const changeStage = (stage) => {
+    return {
+        type: "CHANGE_STAGE",
+        stage: stage
+    }
+}
+
+const addBank = (amount) => {
     return {
         type: "ADD_BANK",
         bank: amount
     }
 }
 
-const AddItem = (item, amount) => {
+const addItem = (item, amount) => {
     return {
         type: "ADD_ITEM",
         item: item,
@@ -28,4 +35,4 @@ const AddItem = (item, amount) => {
 }
 
 
-export { setGameData, setDays, AddBank, AddItem }
+export { setGameData, setDays, changeStage, addBank, addItem }
