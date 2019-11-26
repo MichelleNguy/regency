@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { addBank, addItem, changeStage } from '../redux/actionCreator'
+import { basePrice } from '../script'
 
 const Inventory = () => {
 
@@ -11,14 +12,14 @@ const Inventory = () => {
     const [ error, setError ] = useState("")
 
     const renderShop = () => {
-        let items = [ "lemons", "sugar", "ice", "cups"]
+        let items = Object.keys(basePrice)
         return (
             <React.Fragment>
                 { items.map( item => {
                     return (
                         <div>
                             <img src={`./ingredients/${item}.png`}/> X { state[`${item}`]}
-                            <button onClick={() => buyItem(item)}>BUY MORE</button>
+                            { <button onClick={ () => buy({item: item, amount: 10})}>BUY 10 {basePrice[item] * 10}</button> }
                         </div>
                     )
                 }) }
@@ -26,20 +27,16 @@ const Inventory = () => {
         )
     }
 
-    const buyItem = (item) => {
-        let prices = {
-            lemons: 2.50,
-            sugar: 1,
-            ice: 0.10,
-            cups: 1.5
+    const buy = ({item, amount}) => {
+        let discount
+        switch (amount) {
+            case 25: discount = 0.05; break;
+            case 50: discount = 0.10; break;
+            default: discount = 0
         }
-        if (state.bank < prices[item]) {
-            setError("You can't afford that")
-        } else {
-            dispatch(addBank(-prices[item]))
-            dispatch(addItem(item, 10))
-        }
+
     }
+
 
     return (
         <div>
