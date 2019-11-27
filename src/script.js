@@ -5,4 +5,12 @@ const basePrice = {
     cups: .10
 }
 
-export { basePrice }
+const discount = (amount) => {
+    switch (amount) {
+        case 25: return 0.05
+        case 50: return 0.10
+        default: return 0
+    }
+}
+
+export { basePrice, discount }

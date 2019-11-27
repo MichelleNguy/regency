@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addBank, addItem, changeStage } from '../redux/actionCreator'
-import { basePrice } from '../script'
+import { basePrice, discount } from '../script'
 
 const Inventory = () => {
 
@@ -19,7 +18,7 @@ const Inventory = () => {
                     return (
                         <div>
                             <img src={`./ingredients/${item}.png`}/> X { state[`${item}`]}
-                            { <button onClick={ () => buy({item: item, amount: 10})}>BUY 10 {basePrice[item] * 10}</button> }
+                            { renderButtons(item) }
                         </div>
                     )
                 }) }
@@ -27,16 +26,31 @@ const Inventory = () => {
         )
     }
 
-    const buy = ({item, amount}) => {
-        let discount
-        switch (amount) {
-            case 25: discount = 0.05; break;
-            case 50: discount = 0.10; break;
-            default: discount = 0
-        }
-
+    const renderButtons = (item) => {
+        let counts = [ 10, 25, 50]
+        return (
+            <React.Fragment>
+                { counts.map( count => {
+                    let price = getPrice({item, count})
+                    return <button onClick={() => buy({price, count, item})}>BUY {count} @ {price}</button> 
+                }) }
+            </React.Fragment>
+        )
     }
 
+    const getPrice = ({item, count}) => {
+        let discountPercentage = discount(count)
+        return ((basePrice[item] * count) * (1 - discountPercentage))
+    }
+
+    const buy = ({price, count, item}) => {
+        if (state.bank < price) {
+            setError("You can't afford that.")
+        } else {
+            dispatch(addBank(-price))
+            dispatch(addItem(item, count))
+        }
+    }
 
     return (
         <div>
@@ -45,10 +59,6 @@ const Inventory = () => {
             <button onClick={() => dispatch(changeStage("recipe"))}>NEXT</button>
         </div>
     )
-}
-
-Inventory.propTypes = {
-    bank: PropTypes.number
 }
 
 export default Inventory
