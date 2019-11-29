@@ -1,11 +1,17 @@
 const initialState = {
     stage: "inventory",
-    bank: 100,
+    bank: 20,
     day: 0,
     cups: 0,
     lemons: 0,
     sugar: 0,
-    ice: 0
+    ice: 0,
+    recipe: {
+        lemons: 3,
+        sugar: 3,
+        ice: 3,
+        cup: 1
+    }
 }
 
 
@@ -35,6 +41,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 [action.item]: (state[action.item] + action.amount)
+            }
+        case "CHANGE_RECIPE":
+            return {
+                ...state,
+                recipe: action.recipe
             }
         default:
             return state

@@ -34,5 +34,12 @@ const addItem = (item, amount) => {
     }
 }
 
+const changeRecipe = (recipe) => {
+    return {
+        type: "CHANGE_RECIPE",
+        recipe: recipe
+    }
+}
 
-export { setGameData, setDays, changeStage, addBank, addItem }
+
+export { setGameData, setDays, changeStage, addBank, addItem, changeRecipe }

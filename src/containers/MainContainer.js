@@ -8,6 +8,7 @@ import Instructions from '../components/Instructions'
 import Credits from '../components/Credits'
 import GameMenu from './GameMenu'
 import Inventory from './Inventory'
+import Recipe from './Recipe'
 
 const MainContainer = () => {
 
@@ -28,7 +29,7 @@ const MainContainer = () => {
             case "inventory":
                 return <Inventory />
             case "recipe":
-                return <Instructions />
+                return <Recipe />
         }
     }
 
