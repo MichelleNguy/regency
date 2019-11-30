@@ -30,6 +30,8 @@ const MainContainer = () => {
                 return <Inventory />
             case "recipe":
                 return <Recipe />
+            case "start":
+                return <Credits />
         }
     }
 
