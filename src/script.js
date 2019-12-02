@@ -13,4 +13,21 @@ const discount = (amount) => {
     }
 }
 
+const simulateDay = (recipe) => {
+    let bonus = {
+        sweet: false,
+        cold: false,
+        number: 0
+    }
+    if (recipe.lemons == recipe.sugar || recipe.lemons == recipe.sugar - 1) {
+        bonus.sweet = true;
+    }
+    if (recipe.ice >= 5) {
+        bonus.cold = true;
+    }
+    if (bonus.sweet) { bonus.number += .25 }
+    if (bonus.cold) { bonus.number += .25 }
+    return Math.random() * (20 - 5) + 5;
+}
+
 export { basePrice, discount }

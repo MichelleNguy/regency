@@ -9,6 +9,7 @@ import Credits from '../components/Credits'
 import GameMenu from './GameMenu'
 import Inventory from './Inventory'
 import Recipe from './Recipe'
+import EndDay from './EndDay'
 
 const MainContainer = () => {
 
@@ -31,7 +32,7 @@ const MainContainer = () => {
             case "recipe":
                 return <Recipe />
             case "start":
-                return <Credits />
+                return <EndDay />
         }
     }
 
